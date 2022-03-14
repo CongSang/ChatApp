@@ -1,0 +1,170 @@
+.title {
+    -fx-text-fill: #619196;
+}
+
+.primary-color {
+    -fx-background-color: #619196;
+}
+
+.secondary-color {
+    -fx-background-color: #84b4c8;
+}
+
+.lblForgot:hover {
+    -fx-text-fill: #000000;
+}
+
+.button1 {
+    -fx-background-color: #619196;
+    -fx-text-fill: #ffffff;
+}
+
+.button1:hover {
+    -fx-text-fill: #45787e;
+    -fx-border-color: #619196;
+    -fx-background-color: #b2d9ea;
+    -fx-border-radius: 3;
+}
+
+
+.button2 {
+    -fx-background-color: #afafaf;
+    -fx-text-fill: #ffffff;
+}
+
+.button2:hover {
+    -fx-background-color: #dadada;
+    -fx-text-fill: #000000;
+}
+
+.menu-color {
+    -fx-background-color: #619196;
+}
+
+.menu-button {
+    -fx-background-color: #619196;
+    -fx-text-fill: #000000;
+}
+
+.menu-button:hover {
+    -fx-background-color: #84b4c8;
+    -fx-text-fill: #ffffff;
+}
+
+.menu-button:focused {
+    -fx-background-color: #84b4c8;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 0 0 0 3px;
+}
+
+.linear-grad {
+    -fx-background-color: linear-gradient(to bottom left, #84b4c8, #619196);
+}
+
+.label_message {
+    -fx-background-color: #619196;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 5;
+    -fx-label-padding: 5 5 5 5;
+}
+
+.goBack:hover {
+    -fx-opacity: 0.5; 
+}
+
+/*------------------------- List user online style -------------------------- */
+.list-cell {
+    -fx-cell-size: 50;
+    -fx-animated: true;
+    -fx-padding: 1px;
+}
+
+.list-cell:hover {
+    -fx-background-color: #dbdbdb;
+}
+
+.list-view {
+    -fx-border-image-width: 0;
+}
+
+#userList {
+    -fx-box-border: transparent;
+}
+
+#listHbox {
+    -fx-background-color: #d5d5d5;
+    -fx-padding: 0.2;
+    -fx-spacing: -2;
+}
+
+#onlineUsersHbox {
+    -fx-border-color: #d5d5d5;
+    -fx-border-width: 1px;
+    -fx-padding: 0.2;
+    -fx-spacing: -2;
+}
+
+/*------------------------- Message view style -------------------------- */
+
+.imageView {
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.08),2,1.0,0.5,0.5);
+    -fx-padding: 5; 
+}
+
+.note {
+    -fx-font-weight: bold;
+}
+
+.dialogBox {
+    -fx-background-color: linear-gradient(to left, #84b4c8, #619196);
+}
+
+.shadow {
+    -fx-background-color: aliceblue;    
+}
+
+/*#scrollPane{
+    -fx-background-color: transparent;
+}*/
+/*#scrollPane >.viewport{
+    -fx-background-color: transparent;
+}*/
+
+/*#scrollPane .scroll-bar:vertical{
+    -fx-background-color:inherit;
+
+}*/
+
+/*#scrollPane .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+
+}
+
+#scrollPane .scroll-bar:vertical .increment-button,
+#scrollPane .scroll-bar:vertical .decrement-button{
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 10 0;
+
+}
+
+#scrollPane  .scroll-bar .increment-arrow,
+#scrollPane  .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding:0;
+}
+
+#scrollPane .scroll-bar:vertical .thumb {
+    -fx-background-color:transparent;
+    -fx-background-color:rgba(0,0,0,0.6);
+    -fx-background-insets: 4, 0, 0;
+    -fx-background-radius: 2em;
+}*/
+/*#scrollPane:hover .scroll-bar:vertical .thumb{
+    
+}*/
+
+
+
