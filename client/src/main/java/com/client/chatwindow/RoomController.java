@@ -38,14 +38,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import animatefx.animation.*;
+import java.awt.FontMetrics;
+import java.util.ArrayList;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class RoomController implements Initializable {
 
     @FXML
-    private ListView<HBox> MessageView;
+    private VBox MessageView;
 
     @FXML
     private ListView<User> userList;
@@ -108,10 +113,16 @@ public class RoomController implements Initializable {
     private ImageView showAvatar;
 
     @FXML
-    private TextField tfMessage;
+    private TextArea tfMessage;
     
     @FXML
     private ScrollPane scrollPane;
+    
+    @FXML
+    private TextFlow emojiList;
+
+    @FXML
+    private Button btnEmoji;
 
     Logger logger = LoggerFactory.getLogger(RoomController.class);
 
@@ -124,6 +135,17 @@ public class RoomController implements Initializable {
         if (!tfMessage.getText().isEmpty()) {
             Listener.send(msg);
             tfMessage.clear();
+        }
+    }
+    
+     @FXML
+    void btnEmojiClick(ActionEvent event) {
+        if(emojiList.isVisible()){
+            new BounceOutDown(emojiList).play();
+            emojiList.setVisible(false);
+        }else {
+            new BounceInUp(emojiList).play();
+            emojiList.setVisible(true);
         }
     }
 
@@ -181,7 +203,11 @@ public class RoomController implements Initializable {
             sendMess();
         }
     }
-
+    
+    public void breakTextNewLine(String fullText, Double width) {
+        
+    }
+    
     public synchronized void addToChat(Message msg) {
         Task<HBox> othersMessages = new Task<HBox>() {
             @Override
@@ -195,11 +221,13 @@ public class RoomController implements Initializable {
 
                 DialogLabel dl = new DialogLabel();
                 dl.setText(msg.getName() + ": " + msg.getMsg());
-                dl.getStyleClass().add("shadow");
+                dl.setWrapText(true);
+                dl.getStyleClass().add("whiteBox");
                 
                 HBox x = new HBox();
+                x.setAlignment(Pos.CENTER_LEFT);
                 dl.setDialogPos(DialogPos.FACE_LEFT_CENTER);
-                x.setPadding(new Insets(5,5,5,2));
+                x.setPadding(new Insets(5,5,5,10));
                 
                 x.getChildren().addAll(profileImage, dl);
                 logger.debug("ONLINE USERS: " + Integer.toString(msg.getUserList().size()));
@@ -209,7 +237,7 @@ public class RoomController implements Initializable {
         };
 
         othersMessages.setOnSucceeded(event -> {
-            MessageView.getItems().add(othersMessages.getValue());
+            MessageView.getChildren().add(othersMessages.getValue());
         });
 
         Task<HBox> yourMessages = new Task<HBox>() {
@@ -223,11 +251,12 @@ public class RoomController implements Initializable {
 
                 DialogLabel dl = new DialogLabel();
                 dl.setText(msg.getMsg());
+                dl.setWrapText(true);
                 dl.getStyleClass().add("dialogBox");
                 
                 HBox x = new HBox();
                 x.setMaxWidth(MessageView.getWidth() - 20);
-                x.setAlignment(Pos.TOP_RIGHT);
+                x.setAlignment(Pos.CENTER_RIGHT);
                 x.setPadding(new Insets(5,2,5,5));
                 
                 dl.setDialogPos(DialogPos.FACE_RIGHT_CENTER);
@@ -238,7 +267,7 @@ public class RoomController implements Initializable {
             }
         };
         yourMessages.setOnSucceeded(event -> {
-            MessageView.getItems().add(yourMessages.getValue());
+            MessageView.getChildren().add(yourMessages.getValue());
         });
 
         if (msg.getName().equals(lblUserName.getText())) {
@@ -263,14 +292,14 @@ public class RoomController implements Initializable {
                 HBox x = new HBox();
                 dl.setDialogPos(DialogPos.FACE_BOTTOM);
                 x.setAlignment(Pos.CENTER);
-                x.setPadding(new Insets(5,5,5,5));
+                x.setPadding(new Insets(5));
                 
                 x.getChildren().addAll(dl);
                 return x;
             }
         };
         task.setOnSucceeded(event -> {
-            MessageView.getItems().add(task.getValue());
+            MessageView.getChildren().add(task.getValue());
         });
 
         Thread t = new Thread(task);
@@ -318,7 +347,7 @@ public class RoomController implements Initializable {
         try {
             Stage stage;
             Parent root;
-
+            
             stage = App.getPrimaryStage();
             root = FXMLLoader.load(this.getClass().getClassLoader().getResource("client/Login.fxml"));
 
@@ -341,6 +370,15 @@ public class RoomController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        for(Node text : emojiList.getChildren()){
+            text.setOnMouseClicked(event -> {
+                tfMessage.setText(tfMessage.getText()+" "+((Text)text).getText());
+                emojiList.setVisible(false);
+            });
+        }
+        
+        scrollPane.vvalueProperty().bind(MessageView.heightProperty());
 
         /* Added to prevent the enter from adding a new line to inputMessageBox */
         tfMessage.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {

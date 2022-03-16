@@ -76,7 +76,7 @@
 .list-cell {
     -fx-cell-size: 50;
     -fx-animated: true;
-    -fx-padding: 1px;
+    -fx-padding: 2px;
 }
 
 .list-cell:hover {
@@ -104,11 +104,52 @@
     -fx-spacing: -2;
 }
 
+/*#userList{
+    -fx-background-color: transparent;
+}
+#userList >.viewport{
+    -fx-background-color: transparent;
+}
+
+#userList .scroll-bar:vertical{
+    -fx-background-color:inherit;
+
+}
+
+#userList .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+
+}
+#userList .scroll-bar:vertical .increment-button,
+#userList .scroll-bar:vertical .decrement-button{
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 10 0;
+
+}
+
+#userList  .scroll-bar .increment-arrow,
+#userList  .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding:0;
+}
+#userList .scroll-bar:vertical .thumb {
+    -fx-background-color:transparent;
+
+}
+#userList:hover .scroll-bar:vertical .thumb{
+    -fx-background-color:rgba(0,0,0,0.6);
+    -fx-background-insets: 4, 0, 0;
+    -fx-background-radius: 2em;
+}*/
+
 /*------------------------- Message view style -------------------------- */
 
 .imageView {
     -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.08),2,1.0,0.5,0.5);
-    -fx-padding: 5; 
+    -fx-padding: 3px;
 }
 
 .note {
@@ -116,30 +157,62 @@
 }
 
 .dialogBox {
-    -fx-background-color: linear-gradient(to left, #84b4c8, #619196);
+    -fx-background-color: #84b4c8;
+    -fx-font-size: 14px;
+    -fx-word-wrap: break-word;
+    -fx-width: 200px;
 }
 
-.shadow {
-    -fx-background-color: aliceblue;    
+.whiteBox {
+    -fx-background-color: white;
+    -fx-font-size: 14px;
 }
 
-/*#scrollPane{
-    -fx-background-color: transparent;
-}*/
-/*#scrollPane >.viewport{
-    -fx-background-color: transparent;
-}*/
+#emojiList{
+    -fx-font-size: 16px;
+    -fx-padding: 3px;     
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-border-color: lightgray;
+}
 
-/*#scrollPane .scroll-bar:vertical{
+#btnEmoji{
+    -fx-min-width: 15px;
+    -fx-min-height: 15px;
+    -fx-padding: 2;
+    -fx-background-color: transparent;
+    -fx-font-size: 16px;
+    -fx-text-fill: gray;
+    -fx-shape: "M 95.250002,86.845238 A 17.008928,17.386906 0 0 1 78.241074,104.23214 17.008928,
+    17.386906 0 0 1 61.232145,86.845238 17.008928,17.386906 0 0 1 78.241074,69.458332 17.008928,
+    17.386906 0 0 1 95.250002,86.845238 Z";
+}
+
+#btnEmoji:hover {
+    -fx-font-size: 18px;
+    -fx-text-fill: black;
+}
+
+#btnSendMess:hover{
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5) , 0.3, 0.3, 2, 2);
+}
+
+#scrollPane{
+    -fx-background-color: transparent;
+}
+
+#scrollPane >.viewport{
+    -fx-background-color: transparent;
+}
+
+#scrollPane .scroll-bar:vertical{
     -fx-background-color:inherit;
+}
 
-}*/
-
-/*#scrollPane .scroll-bar:vertical .track{
+#scrollPane .scroll-bar:vertical .track{
     -fx-background-color:transparent;
     -fx-border-color:transparent;
     -fx-background-radius: 0em;
-
 }
 
 #scrollPane .scroll-bar:vertical .increment-button,
@@ -147,7 +220,6 @@
     -fx-background-color:transparent;
     -fx-background-radius: 0em;
     -fx-padding:0 0 10 0;
-
 }
 
 #scrollPane  .scroll-bar .increment-arrow,
@@ -158,13 +230,53 @@
 
 #scrollPane .scroll-bar:vertical .thumb {
     -fx-background-color:transparent;
+}
+
+#scrollPane:hover .scroll-bar:vertical .thumb{
     -fx-background-color:rgba(0,0,0,0.6);
     -fx-background-insets: 4, 0, 0;
     -fx-background-radius: 2em;
-}*/
-/*#scrollPane:hover .scroll-bar:vertical .thumb{
-    
-}*/
+}
 
+#tfMessage {
+    -fx-padding: 0 25 0 10;
+    -fx-background-color: transparent, white, transparent,white;
+    -fx-background-insets: 0, 7, 0;
+    -fx-background-radius: 0.5em;
+}
 
+#tfMessage .scroll-pane{
+    -fx-background-color: transparent;
+}
+
+#tfMessage .scroll-pane >.viewport , #tfMessage >.viewport{
+    -fx-background-color: transparent;
+}
+
+#tfMessage .scroll-pane .scroll-bar:vertical, #tfMessage .scroll-bar:vertical{
+    -fx-background-color:inherit;
+}
+
+#tfMessage .scroll-pane .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+}
+
+#tfMessage .scroll-pane .scroll-bar:vertical .increment-button,
+#tfMessage .scroll-pane .scroll-bar:vertical .decrement-button{
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 10 0;
+}
+
+#tfMessage .scroll-pane  .scroll-bar .increment-arrow,
+#tfMessage .scroll-pane  .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding:0;
+}
+
+#tfMessage .scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color:transparent;
+}
 

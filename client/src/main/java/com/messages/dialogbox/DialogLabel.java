@@ -48,10 +48,6 @@ public class DialogLabel extends Label {
     }
 
     private void init() {
-        DropShadow ds = new DropShadow();
-        ds.setOffsetX(1.3);
-        ds.setOffsetY(1.3);
-        ds.setColor(Color.DARKGRAY);
         setPrefSize(Label.USE_COMPUTED_SIZE, Label.USE_COMPUTED_SIZE);
         shapeProperty().addListener((ObservableValue<? extends Shape> arg0, Shape arg1, Shape arg2) -> {
             if (systemCall) {
@@ -80,31 +76,19 @@ public class DialogLabel extends Label {
         // top right bottom left
         switch (pos) {
             case FACE_LEFT_BOTTOM:
-                setPadding(new Insets(pading, pading,
-                        (this.getBoundsInLocal().getWidth() * ((Dialog) getShape()).drawRectBubbleIndicatorRule) / 2
-                                + pading,
-                        pading));
+                setPadding(new Insets(pading, pading,15,pading));
                 break;
             case FACE_LEFT_CENTER:
-                setPadding(new Insets(pading, pading, pading,
-                        (this.getBoundsInLocal().getWidth() * ((Dialog) getShape()).drawRectBubbleIndicatorRule) / 2
-                                + pading));
+                setPadding(new Insets(pading, pading, pading,15));
                 break;
             case FACE_RIGHT_BOTTOM:
-                setPadding(new Insets(pading,
-                        (this.getBoundsInLocal().getWidth() * ((Dialog) getShape()).drawRectBubbleIndicatorRule) / 2
-                                + pading,
-                        pading, pading));
+                setPadding(new Insets(pading,15,pading, pading));
                 break;
             case FACE_RIGHT_CENTER:
-                setPadding(new Insets(pading,
-                        (this.getBoundsInLocal().getWidth() * ((Dialog) getShape()).drawRectBubbleIndicatorRule) / 2
-                                + pading,
-                        pading, pading));
+                setPadding(new Insets(pading,15,pading, pading));
                 break;
             case FACE_TOP:
-                setPadding(new Insets(pading,
-                        pading, pading, pading));
+                setPadding(new Insets(pading,pading, pading, pading));
                 break;
         }
     }
@@ -114,7 +98,7 @@ public class DialogLabel extends Label {
     }
 
     public void setPading(double pading) {
-        if (pading > 25.0)
+        if (pading > 15.0)
             return;
         this.pading = pading;
     }
