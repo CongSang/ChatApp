@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import com.user.User;
+import javafx.geometry.Insets;
 
 public class CellRender implements Callback<ListView<User>, ListCell<User>> {
     @Override
@@ -23,18 +24,25 @@ public class CellRender implements Callback<ListView<User>, ListCell<User>> {
                 setText(null);
                 if (user != null) {
                     HBox hBox = new HBox();
-
-                    Text name = new Text(user.getName());
-                    Text place = new Text("  ");
+                    hBox.setPadding(new Insets(10));
+                    
+                    Text name = new Text("  " + user.getName());
+                    name.setStyle("-fx-font-size: 18px");
+                    
+                    ImageView onlineImageView = new ImageView();
+                    Image statusImage = new Image(
+                            getClass().getClassLoader()
+                                    .getResource("icons/online.png").toString(), 16, 16,true,true);
+                    onlineImageView.setImage(statusImage);
 
                     ImageView pictureImageView = new ImageView();
                     Image image = new Image(
                             getClass().getClassLoader()
                                     .getResource("icons/" + user.getPicture().toLowerCase() + ".png").toString(),
-                            40, 40, true, true);
+                            50, 50, true, true);
                     pictureImageView.setImage(image);
 
-                    hBox.getChildren().addAll(pictureImageView, place, name);
+                    hBox.getChildren().addAll(onlineImageView, pictureImageView, name);
                     hBox.setAlignment(Pos.CENTER_LEFT);
 
                     setGraphic(hBox);

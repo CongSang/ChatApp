@@ -71,7 +71,7 @@ public class Dialog extends Path {
                 new LineTo(3.0f, 2.5f));
     }
 
-    protected double drawRectBubbleIndicatorRule = 0.2;
+    protected double drawRectBubbleIndicatorRule = 0.3;
 
     private void drawRectBubbleLeftCenterIndicator() {
         getElements().addAll(new MoveTo(1.0f, 2.5f),

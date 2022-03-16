@@ -1,7 +1,5 @@
 com\client\chatwindow\LoginController.class
-com\messages\dialogbox\DialogLabel$4.class
 com\client\chatwindow\Listener$1.class
-com\messages\dialogbox\DialogLabel$2.class
 com\client\chatwindow\RoomController$1.class
 com\messages\dialogbox\Dialog.class
 module-info.class
@@ -11,7 +9,6 @@ com\messages\dialogbox\DialogPos.class
 com\client\chatwindow\RoomController$2.class
 com\client\chatwindow\App.class
 com\user\User.class
-com\messages\dialogbox\DialogLabel$3.class
 com\client\chatwindow\CellRender$1.class
 com\client\chatwindow\Listener.class
 com\messages\MessageType.class
