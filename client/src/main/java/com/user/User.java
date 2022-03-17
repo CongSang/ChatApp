@@ -3,12 +3,37 @@ package com.user;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private int id;
     public String picture;
     public String firstName;
     public String lastName;
     public String email;
     public String phone;
+    private String username;
+    private String password;
 
+    public User(int id, String picture, String firstName, String lastName, String email, String phone, String username, String password) {
+        this.id = id;
+        this.picture = picture;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }     
+    
     public String getPicture() {
         return picture;
     }
@@ -17,12 +42,20 @@ public class User implements Serializable {
         this.picture = picture;
     }
 
-    public String getName() {
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
         return lastName;
     }
 
-    public void setName(String name) {
-        this.lastName = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -41,4 +74,24 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return this.firstName;
+    }
 }
