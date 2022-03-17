@@ -26,7 +26,7 @@ public class CellRender implements Callback<ListView<User>, ListCell<User>> {
                     HBox hBox = new HBox();
                     hBox.setPadding(new Insets(10));
                     
-                    Text name = new Text("  " + user.getName());
+                    Text name = new Text("  " + user.getFirstName());
                     name.setStyle("-fx-font-size: 18px");
                     
                     ImageView onlineImageView = new ImageView();
