@@ -29,6 +29,12 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import animatefx.animation.*;
+import com.messages.MessageType;
+import com.messages.UserInfoMessage;
+import java.io.DataInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 
 public class LoginController implements Initializable {
 
@@ -84,23 +90,60 @@ public class LoginController implements Initializable {
         String hostname = "localhost";
         int port = 9001;
         String username = tfUsernameSignIn.getText();
-        // String password = tfPasswordSignIn.getText();
+        String password = tfPasswordSignIn.getText();
         String picture = "user";
+        
+        if (checkLoginSuccess(username, password)) {
+        
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("client/Room.fxml"));
+            Parent window = (Pane) fxmlLoader.load();
+            con = fxmlLoader.<RoomController>getController();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("client/Room.fxml"));
-        Parent window = (Pane) fxmlLoader.load();
-        con = fxmlLoader.<RoomController>getController();
-
-        Listener listener = new Listener(hostname, port, username, picture, con);
-        Thread x = new Thread(listener);
-        x.start();
-        this.scene = new Scene(window);
+            Listener listener = new Listener(hostname, port, username, picture, con);
+            Thread x = new Thread(listener);
+            x.start();
+            this.scene = new Scene(window);
+        }
+        else {
+            this.showErrorDialog("Sai tk hoac mk!!");
+        }
+    }
+    
+    public boolean checkLoginSuccess(String username, String password) {
+        String hostname = "localhost";
+        int port = 9001;
+        Socket socket;
+        
+        try {
+            socket = new Socket(hostname, port);
+            System.out.println("Connecting...");
+            UserInfoMessage msg = new UserInfoMessage(username, password, MessageType.SIGNIN);
+            OutputStream os = socket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(os);
+            oos.writeObject(msg);
+            DataInputStream input = new DataInputStream(socket.getInputStream());
+            int correct = (int) input.readInt();
+            if (socket.isConnected()){
+                System.out.println("Connected.");
+                if(correct == 1) {
+                    socket.close();
+                    return true;
+                }
+                else {
+                    socket.close();
+                    return false;
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 
     public void showScene() throws IOException {
         Platform.runLater(() -> {
             Stage stage = (Stage) tfUsernameSignIn.getScene().getWindow();
-            stage.setResizable(true);
+            stage.setResizable(false);
 
             stage.setOnCloseRequest((WindowEvent e) -> {
                 Platform.exit();
@@ -141,7 +184,24 @@ public class LoginController implements Initializable {
     
     @FXML
     void btnCreateAccountClicked(ActionEvent event) {
-    
+        String username = tfUsernameSignUp.getText();
+        String password = tfPasswordSignUp.getText();
+        String picture = "user";
+        String firstName = tfFirstName.getText();
+        String lastName = tfLastName.getText();
+        String email = tfEmail.getText();
+        String phone = tfPhone.getText();
+        
+        if (Register.signUp(firstName, lastName, email, phone, picture, username, password)) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Info");
+            alert.setHeaderText("Dang ki thanh cong");
+            alert.setContentText("SUCCESS");
+            alert.showAndWait();
+        }
+        else {
+            this.showErrorDialog("Dang ki that bai");
+        }
     }
 
     public void generateAnimation() {

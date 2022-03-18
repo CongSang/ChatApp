@@ -1,1 +1,8 @@
-E:\CongSang's files\Projects\Java_Projects\server\src\main\java\com\server\Server.java
+D:\Java\Projects\ChatApp\server\src\main\java\com\server\Server.java
+D:\Java\Projects\ChatApp\server\src\main\java\com\utils\Jdbc.java
+D:\Java\Projects\ChatApp\server\src\main\java\com\exception\DuplicateUsernameException.java
+D:\Java\Projects\ChatApp\server\src\main\java\com\user\User.java
+D:\Java\Projects\ChatApp\server\src\main\java\com\user\UserService.java
+D:\Java\Projects\ChatApp\server\src\main\java\com\messages\SigninMessage.java
+D:\Java\Projects\ChatApp\server\src\main\java\com\messages\MessageType.java
+D:\Java\Projects\ChatApp\server\src\main\java\com\messages\Message.java
