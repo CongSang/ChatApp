@@ -1,5 +1,7 @@
 package com.client.chatwindow;
 
+import com.cipher.Alphabet;
+import com.cipher.Vigenere;
 import java.io.*;
 import java.net.Socket;
 
@@ -53,6 +55,7 @@ public class Listener implements Runnable {
         logger.info("Connection accepted " + socket.getInetAddress() + ":" + socket.getPort());
 
         try {
+            
             connect();
             logger.info("Sockets in and out ready!");
             while (socket.isConnected()) {
@@ -89,10 +92,11 @@ public class Listener implements Runnable {
 
     public static void send(String msg) throws IOException {
         Message createMessage = new Message();
+        Vigenere cipher = new Vigenere();
         createMessage.setName(username);
         createMessage.setType(MessageType.USER);
-        createMessage.setMsg(msg);
-        createMessage.setPicture(picture);
+        createMessage.setMsg(Vigenere.Encode(msg));
+        createMessage.setPicture(getPicture());
         oos.writeObject(createMessage);
         oos.flush();
     }
@@ -115,5 +119,31 @@ public class Listener implements Runnable {
         createMessage.setPicture("user");
         oos.writeObject(createMessage);
         oos.flush();
+    }
+    
+    //Ma hoa bang vigenere
+        public static String Encode(String text) {
+        
+        return null;
+    }
+    
+    //Giai ma bang Vigenere
+    public static String Decode(String text) {
+        
+        return null;
+    }
+
+    /**
+     * @return the picture
+     */
+    public static String getPicture() {
+        return picture;
+    }
+
+    /**
+     * @param aPicture the picture to set
+     */
+    public static void setPicture(String aPicture) {
+        picture = aPicture;
     }
 }

@@ -38,6 +38,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import animatefx.animation.*;
+import com.cipher.Vigenere;
 import java.awt.FontMetrics;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
@@ -185,6 +186,7 @@ public class RoomController implements Initializable {
                 imgAvatar.setImage(image);
                 showAvatar.setImage(image);
                 saveControl = false;
+                Listener.setPicture(filePath.getPath().substring(filePath.getPath().lastIndexOf("\\")).replace("\\", "").split(".png")[0]);
                 fileChoosePath.setText("");
             } catch (IOException e) {
                 System.err.println(e.getMessage());
@@ -220,7 +222,7 @@ public class RoomController implements Initializable {
                 profileImage.getStyleClass().add("imageView");
 
                 DialogLabel dl = new DialogLabel();
-                dl.setText(msg.getName() + ": " + msg.getMsg());
+                dl.setText(msg.getName() + ": " + Vigenere.Decode(msg.getMsg()));
                 dl.setWrapText(true);
                 dl.getStyleClass().add("whiteBox");
                 
@@ -250,9 +252,10 @@ public class RoomController implements Initializable {
                 profileImage.getStyleClass().add("imageView");
 
                 DialogLabel dl = new DialogLabel();
-                dl.setText(msg.getMsg());
+                dl.setText(Vigenere.Decode(msg.getMsg()));
                 dl.setWrapText(true);
                 dl.getStyleClass().add("dialogBox");
+                dl.setPadding(new Insets(5,30,5,5));
                 
                 HBox x = new HBox();
                 x.setMaxWidth(MessageView.getWidth() - 20);

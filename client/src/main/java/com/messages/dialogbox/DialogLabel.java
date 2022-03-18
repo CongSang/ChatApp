@@ -76,16 +76,16 @@ public class DialogLabel extends Label {
         // top right bottom left
         switch (pos) {
             case FACE_LEFT_BOTTOM:
-                setPadding(new Insets(pading, pading,15,pading));
+                setPadding(new Insets(pading, pading,25,pading));
                 break;
             case FACE_LEFT_CENTER:
-                setPadding(new Insets(pading, pading, pading,15));
+                setPadding(new Insets(pading, pading, pading,25));
                 break;
             case FACE_RIGHT_BOTTOM:
-                setPadding(new Insets(pading,15,pading, pading));
+                setPadding(new Insets(pading,25,pading, pading));
                 break;
             case FACE_RIGHT_CENTER:
-                setPadding(new Insets(pading,15,pading, pading));
+                setPadding(new Insets(pading, 25,pading, pading));
                 break;
             case FACE_TOP:
                 setPadding(new Insets(pading,pading, pading, pading));
