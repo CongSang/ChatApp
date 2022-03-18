@@ -22,6 +22,6 @@ public class Jdbc {
     }
     
     public static Connection getConn() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost/chatapp", "root", "quoc2401");
+        return DriverManager.getConnection("jdbc:mysql://localhost/chatappdb", "root", "15082001");
     }
 }

@@ -351,6 +351,8 @@ public class RoomController implements Initializable {
             Stage stage;
             Parent root;
             
+            
+            
             stage = App.getPrimaryStage();
             root = FXMLLoader.load(this.getClass().getClassLoader().getResource("client/Login.fxml"));
 
@@ -360,7 +362,9 @@ public class RoomController implements Initializable {
                 System.exit(0);
             });
             stage.setResizable(false);
+            
             stage.show();
+//            Listener.closeClient();
         } catch (IOException e) {
             e.printStackTrace();
         }
