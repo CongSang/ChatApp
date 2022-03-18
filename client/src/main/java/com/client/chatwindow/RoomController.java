@@ -351,8 +351,8 @@ public class RoomController implements Initializable {
             Stage stage;
             Parent root;
             
-            
-            
+            Listener.disconnect();
+            System.out.println("Disconnect Server.");
             stage = App.getPrimaryStage();
             root = FXMLLoader.load(this.getClass().getClassLoader().getResource("client/Login.fxml"));
 
@@ -364,7 +364,6 @@ public class RoomController implements Initializable {
             stage.setResizable(false);
             
             stage.show();
-//            Listener.closeClient();
         } catch (IOException e) {
             e.printStackTrace();
         }

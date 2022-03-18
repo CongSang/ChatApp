@@ -137,7 +137,10 @@ public class Server {
                                 break;
                             case CONNECTED:
                                 addToList();
-                                break;                       
+                                break;
+                            case DISCONNECTED:
+                                closeConnections();
+                                break;
                         }
                     }
                 }
