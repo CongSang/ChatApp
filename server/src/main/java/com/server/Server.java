@@ -20,9 +20,12 @@ import com.messages.Message;
 import com.messages.MessageType;
 import com.messages.SigninMessage;
 import com.user.User;
+import com.user.UserService;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
+import java.sql.SQLException;
 import java.util.logging.Level;
+import jdk.jshell.execution.Util;
 
 public class Server {
     private static final int PORT = 9001;
@@ -68,10 +71,9 @@ public class Server {
         }
     }
     
-    public static boolean checkLogin(SigninMessage msg) {
-        System.out.println(msg.getUsername());
-        System.out.println(msg.getPassword());
-        if (msg.getUsername().equalsIgnoreCase("abc") && msg.getPassword().equals("abc") || msg.getUsername().equalsIgnoreCase("qwe") && msg.getPassword().equals("qwe")) {
+    public static boolean checkLogin(SigninMessage msg) throws SQLException {
+        User u = UserService.getUser(msg.getUsername(), msg.getPassword());
+        if (u != null) {
             return true;
         }
         return false;
@@ -135,7 +137,7 @@ public class Server {
             if (!names.containsKey(firstMessage.getName())) {
                 this.name = firstMessage.getName();
                 user = new User();
-                user.setName(firstMessage.getName());
+                user.setFirstName(firstMessage.getName());
                 user.setPicture(firstMessage.getPicture());
 
                 users.add(user);

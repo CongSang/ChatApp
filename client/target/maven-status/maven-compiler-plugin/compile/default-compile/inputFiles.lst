@@ -3,8 +3,11 @@ D:\Java\Projects\ChatApp\client\src\main\java\com\messages\dialogbox\DialogLabel
 D:\Java\Projects\ChatApp\client\src\main\java\com\user\User.java
 D:\Java\Projects\ChatApp\client\src\main\java\com\cipher\Vigenere.java
 D:\Java\Projects\ChatApp\client\src\main\java\com\client\chatwindow\CellRender.java
+D:\Java\Projects\ChatApp\client\src\main\java\com\client\chatwindow\TextController.java
+D:\Java\Projects\ChatApp\client\src\main\java\com\user\UserService.java
 D:\Java\Projects\ChatApp\client\src\main\java\com\messages\SigninMessage.java
 D:\Java\Projects\ChatApp\client\src\main\java\com\messages\dialogbox\DialogPos.java
+D:\Java\Projects\ChatApp\client\src\main\java\com\utils\Jdbc.java
 D:\Java\Projects\ChatApp\client\src\main\java\com\messages\Message.java
 D:\Java\Projects\ChatApp\client\src\main\java\com\client\chatwindow\App.java
 D:\Java\Projects\ChatApp\client\src\main\java\com\client\chatwindow\RoomController.java
