@@ -58,4 +58,23 @@ public class UserService {
             return users;
         }
     }
+    
+    public static int addUser(String firstName, String lastName, String email
+            , String phone, String picture, String username, String password) throws SQLException {
+        try (Connection conn = Jdbc.getConn()) {
+            PreparedStatement stm = conn.prepareStatement("INSERT INTO users (first_name, last_name, email, phone, picture, username, password)"
+                        + "VALUES (?,?,?,?,?,?,?)");
+            stm.setString(1, firstName);
+            stm.setString(2, lastName);
+            stm.setString(3, email);
+            stm.setString(4, phone);
+            stm.setString(5, picture);
+            stm.setString(6, username);
+            stm.setString(7, password);
+            
+            
+            return stm.executeUpdate();
+        }
+        
+    }
 }

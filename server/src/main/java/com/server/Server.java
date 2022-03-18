@@ -16,16 +16,11 @@ import java.util.HashSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.messages.Message;
-import com.messages.MessageType;
-import com.messages.SigninMessage;
+import com.messages.*;
 import com.user.User;
 import com.user.UserService;
-import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import jdk.jshell.execution.Util;
 
 public class Server {
     private static final int PORT = 9001;
@@ -49,31 +44,55 @@ public class Server {
                 is = socket.getInputStream();
                 input = new ObjectInputStream(is);
                 DataOutputStream output = new DataOutputStream(socket.getOutputStream());
-                SigninMessage s = (SigninMessage) input.readObject();
-                    if(checkLogin(s)) {
-                        output.writeInt(1);
-                        while(true) {
-                            socket = listener.accept();
-                            new Handler(socket).start();
+                UserInfoMessage u = (UserInfoMessage) input.readObject();
+                
+                
+                if(u != null) {
+                    switch (u.getType()) {
+                        case SIGNIN:
+                            if(checkLogin(u)) {
+                                output.writeInt(1);
+                                while(true) {
+                                    socket = listener.accept();
+                                    new Handler(socket).start();
+                                    break;
+                                }
+
+                            }
+                            else 
+                                output.writeInt(-1);
                             break;
-                        }
-                        
+                        case SIGNUP:
+                            if(checkSignUp(u)) {
+                                output.writeInt(1);
+                            }
+                            else 
+                                output.writeInt(-1);
+                            break;
                     }
-                    else 
-                        output.writeInt(-1);
+                }
+                
                 System.out.print(socket.getRemoteSocketAddress().toString());
                 System.out.println(" Connected");
-                System.out.println("Waiting for clients...");        
-
+                System.out.println("Waiting for clients...");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
-    public static boolean checkLogin(SigninMessage msg) throws SQLException {
+    public static boolean checkLogin(UserInfoMessage msg) throws SQLException {
         User u = UserService.getUser(msg.getUsername(), msg.getPassword());
         if (u != null) {
+            return true;
+        }
+        return false;
+    }
+    
+    public static boolean checkSignUp(UserInfoMessage msg) throws SQLException {
+        int c = UserService.addUser(msg.getFirstName(), msg.getLastName(), msg.getEmail()
+                , msg.getPhone(), msg.getPicture(), msg.getUsername(), msg.getPassword());
+        if (c != -1) {
             return true;
         }
         return false;

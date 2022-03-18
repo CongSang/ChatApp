@@ -17,7 +17,7 @@ public class Listener implements Runnable {
     private static final String HASCONNECTED = "has connected";
 
     private static String picture;
-    private Socket socket;
+    private static Socket socket;
     public String hostname;
     public int port;
     public static String username;
@@ -145,5 +145,9 @@ public class Listener implements Runnable {
      */
     public static void setPicture(String aPicture) {
         picture = aPicture;
+    }
+    
+    public static void closeClient() throws IOException {
+        socket.close();
     }
 }
