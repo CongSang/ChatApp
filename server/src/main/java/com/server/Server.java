@@ -18,8 +18,14 @@ import org.slf4j.LoggerFactory;
 
 import com.messages.Message;
 import com.messages.MessageType;
+import com.messages.SigninMessage;
 import com.user.User;
+import com.user.UserService;
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.sql.SQLException;
 import java.util.logging.Level;
+import jdk.jshell.execution.Util;
 
 public class Server {
     private static final int PORT = 9001;
@@ -27,6 +33,8 @@ public class Server {
     private static final HashSet<ObjectOutputStream> writers = new HashSet<>();
     private static final ArrayList<User> users = new ArrayList<>();
     static Logger logger = LoggerFactory.getLogger(Server.class);
+    private static InputStream is;
+    private static ObjectInputStream input;
 
     public static void main(String[] args) throws Exception {
         logger.info("The chat server is running.");
@@ -38,14 +46,37 @@ public class Server {
             while (true) {
                 
                 socket = listener.accept();
-                System.out.println("Connected");
-                System.out.println("Waiting for clients...");
-                new Handler(socket).start();
+                is = socket.getInputStream();
+                input = new ObjectInputStream(is);
+                DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+                SigninMessage s = (SigninMessage) input.readObject();
+                    if(checkLogin(s)) {
+                        output.writeInt(1);
+                        while(true) {
+                            socket = listener.accept();
+                            new Handler(socket).start();
+                            break;
+                        }
+                        
+                    }
+                    else 
+                        output.writeInt(-1);
+                System.out.print(socket.getRemoteSocketAddress().toString());
+                System.out.println(" Connected");
+                System.out.println("Waiting for clients...");        
 
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public static boolean checkLogin(SigninMessage msg) throws SQLException {
+        User u = UserService.getUser(msg.getUsername(), msg.getPassword());
+        if (u != null) {
+            return true;
+        }
+        return false;
     }
 
     private static class Handler extends Thread {
@@ -87,7 +118,7 @@ public class Server {
                                 break;
                             case CONNECTED:
                                 addToList();
-                                break;
+                                break;                       
                         }
                     }
                 }
@@ -106,7 +137,7 @@ public class Server {
             if (!names.containsKey(firstMessage.getName())) {
                 this.name = firstMessage.getName();
                 user = new User();
-                user.setName(firstMessage.getName());
+                user.setFirstName(firstMessage.getName());
                 user.setPicture(firstMessage.getPicture());
 
                 users.add(user);
@@ -216,5 +247,6 @@ public class Server {
                     "HashMap names:" + names.size() + " writers:" + writers.size() + " usersList size:" + users.size());
             logger.debug("closeConnections() method Exit");
         }
+        
     }
 }

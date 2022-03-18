@@ -1,0 +1,65 @@
+@options
+@packages
+@argfile
+-classpath
+'C:/Users/USer/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar;C:/Users/USer/.m2/repository/org/slf4j/slf4j-simple/1.7.36/slf4j-simple-1.7.36.jar;C:/Users/USer/.m2/repository/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar;C:/Users/USer/.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'15'
+-sourcepath
+'D:/Java/Projects/ChatApp/server/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'D:/Java/Projects/ChatApp/server/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'server 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/15/docs/api' 'D:/Java/Projects/ChatApp/server/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'server 1.0-SNAPSHOT API'
+com.exception
+com.messages
+com.server
+com.user
+com.utils
+'D:/Java/Projects/ChatApp/server/src/main/java/com/exception/DuplicateUsernameException.java'
+'D:/Java/Projects/ChatApp/server/src/main/java/com/messages/Message.java'
+'D:/Java/Projects/ChatApp/server/src/main/java/com/messages/MessageType.java'
+'D:/Java/Projects/ChatApp/server/src/main/java/com/messages/SigninMessage.java'
+'D:/Java/Projects/ChatApp/server/src/main/java/com/server/Server.java'
+'D:/Java/Projects/ChatApp/server/src/main/java/com/user/User.java'
+'D:/Java/Projects/ChatApp/server/src/main/java/com/user/UserService.java'
+'D:/Java/Projects/ChatApp/server/src/main/java/com/utils/Jdbc.java'
+C:\Users\USer\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar = 1647426161816
+C:\Users\USer\.m2\repository\org\slf4j\slf4j-simple\1.7.36\slf4j-simple-1.7.36.jar = 1647426161820
+C:\Users\USer\.m2\repository\mysql\mysql-connector-java\8.0.28\mysql-connector-java-8.0.28.jar = 1647603985896
+C:\Users\USer\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar = 1647603987454
+D:\Java\Projects\ChatApp\server\src\main\java = 1647439906490
+D:\Java\Projects\ChatApp\server\target\apidocs\allclasses-index.html = 1647604226290
+D:\Java\Projects\ChatApp\server\target\apidocs\allpackages-index.html = 1647604226292
+D:\Java\Projects\ChatApp\server\target\apidocs\element-list = 1647604226158
+D:\Java\Projects\ChatApp\server\target\apidocs\help-doc.html = 1647604226359
+D:\Java\Projects\ChatApp\server\target\apidocs\index-all.html = 1647604226351
+D:\Java\Projects\ChatApp\server\target\apidocs\index.html = 1647604226278
+D:\Java\Projects\ChatApp\server\target\apidocs\jquery-ui.overrides.css = 1647604226399
+D:\Java\Projects\ChatApp\server\target\apidocs\member-search-index.js = 1647604226296
+D:\Java\Projects\ChatApp\server\target\apidocs\module-search-index.js = 1647604226293
+D:\Java\Projects\ChatApp\server\target\apidocs\overview-summary.html = 1647604226354
+D:\Java\Projects\ChatApp\server\target\apidocs\overview-tree.html = 1647604226274
+D:\Java\Projects\ChatApp\server\target\apidocs\package-search-index.js = 1647604226294
+D:\Java\Projects\ChatApp\server\target\apidocs\script.js = 1647604226363
+D:\Java\Projects\ChatApp\server\target\apidocs\search.js = 1647604226370
+D:\Java\Projects\ChatApp\server\target\apidocs\serialized-form.html = 1647604226216
+D:\Java\Projects\ChatApp\server\target\apidocs\stylesheet.css = 1647604226362
+D:\Java\Projects\ChatApp\server\target\apidocs\tag-search-index.js = 1647604226297
+D:\Java\Projects\ChatApp\server\target\apidocs\type-search-index.js = 1647604226295

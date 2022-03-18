@@ -29,6 +29,14 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import animatefx.animation.*;
+import com.messages.SigninMessage;
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 
 public class LoginController implements Initializable {
 
@@ -84,17 +92,54 @@ public class LoginController implements Initializable {
         String hostname = "localhost";
         int port = 9001;
         String username = tfUsernameSignIn.getText();
-        // String password = tfPasswordSignIn.getText();
+        String password = tfPasswordSignIn.getText();
         String picture = "user";
+        
+        if (checkLoginSuccess(username, password)) {
+        
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("client/Room.fxml"));
+            Parent window = (Pane) fxmlLoader.load();
+            con = fxmlLoader.<RoomController>getController();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("client/Room.fxml"));
-        Parent window = (Pane) fxmlLoader.load();
-        con = fxmlLoader.<RoomController>getController();
-
-        Listener listener = new Listener(hostname, port, username, picture, con);
-        Thread x = new Thread(listener);
-        x.start();
-        this.scene = new Scene(window);
+            Listener listener = new Listener(hostname, port, username, picture, con);
+            Thread x = new Thread(listener);
+            x.start();
+            this.scene = new Scene(window);
+        }
+        else {
+            this.showErrorDialog("Sai tk hoac mk!!");
+        }
+    }
+    
+    public boolean checkLoginSuccess(String username, String password) {
+        String hostname = "localhost";
+        int port = 9001;
+        Socket socket;
+        
+        try {
+            socket = new Socket(hostname, port);
+            System.out.println("Connecting...");
+            SigninMessage msg = new SigninMessage(username, password);
+            OutputStream os = socket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(os);
+            oos.writeObject(msg);
+            DataInputStream input = new DataInputStream(socket.getInputStream());
+            int correct = (int) input.readInt();
+            if (socket.isConnected()){
+                System.out.println("Connected.");
+                if(correct == 1) {
+                    socket.close();
+                    return true;
+                }
+                else {
+                    socket.close();
+                    return false;
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 
     public void showScene() throws IOException {
