@@ -21,6 +21,7 @@ import com.user.User;
 import com.user.UserService;
 import java.io.DataOutputStream;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 public class Server {
     private static final int PORT = 9001;
@@ -148,23 +149,26 @@ public class Server {
                 logger.error("Socket Exception for user " + name);
             } catch (DuplicateUsernameException | IOException | ClassNotFoundException e) {
                 logger.error("Exception in run() method for user: " + name, e);
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 closeConnections();
+                try {
+                    removeFromList();
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             System.out.println("Sever stopped!");
         }
 
-        private synchronized void checkDuplicateUsername(Message firstMessage) throws DuplicateUsernameException {
+        private synchronized void checkDuplicateUsername(Message firstMessage) throws DuplicateUsernameException, SQLException {
             logger.info(firstMessage.getName() + " is trying to connect");
             if (!names.containsKey(firstMessage.getName())) {
-                this.name = firstMessage.getName();
-                user = new User();
-                user.setFirstName(firstMessage.getName());
-                user.setPicture(firstMessage.getPicture());
-
+                user = UserService.getUserInfo(firstMessage.getName());
+                this.name = user.getUsername();
                 users.add(user);
                 names.put(name, user);
-
                 logger.info(name + " has been added to the list");
             } else {
                 logger.error(firstMessage.getName() + " is already connected");
@@ -259,11 +263,6 @@ public class Server {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-            try {
-                removeFromList();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
             logger.info(
                     "HashMap names:" + names.size() + " writers:" + writers.size() + " usersList size:" + users.size());

@@ -35,6 +35,9 @@ import java.io.DataInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyEvent;
 
 public class LoginController implements Initializable {
 
@@ -63,10 +66,10 @@ public class LoginController implements Initializable {
     private TextField tfLastName;
 
     @FXML
-    private TextField tfPasswordSignIn;
+    private PasswordField tfPasswordSignIn;
 
     @FXML
-    private TextField tfPasswordSignUp;
+    private PasswordField tfPasswordSignUp;
 
     @FXML
     private TextField tfUsernameSignIn;
@@ -93,19 +96,35 @@ public class LoginController implements Initializable {
         String password = tfPasswordSignIn.getText();
         String picture = "user";
         
-        if (checkLoginSuccess(username, password)) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(username);
+        list.add(password);
         
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("client/Room.fxml"));
-            Parent window = (Pane) fxmlLoader.load();
-            con = fxmlLoader.<RoomController>getController();
-
-            Listener listener = new Listener(hostname, port, username, picture, con);
-            Thread x = new Thread(listener);
-            x.start();
-            this.scene = new Scene(window);
+        if(isEmpty(list)) {
+            this.showErrorDialog("Please enter Username and Password");
         }
         else {
-            this.showErrorDialog("Sai tk hoac mk!!");
+            if (checkLoginSuccess(username, password)) {
+        
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("client/Room.fxml"));
+                Parent window = (Pane) fxmlLoader.load();
+                con = fxmlLoader.<RoomController>getController();
+
+                Listener listener = new Listener(hostname, port, username, picture, con);
+                Thread x = new Thread(listener);
+                x.start();
+                this.scene = new Scene(window);
+            }
+            else {
+                this.showErrorDialog("Wrong Username or Password!!");
+            }
+        }
+    }
+    
+    @FXML
+    void loginByKey(KeyEvent event) throws IOException {
+        if (event.getCode().toString().equals("ENTER")) {
+            loginButtonAction();
         }
     }
     
@@ -192,16 +211,45 @@ public class LoginController implements Initializable {
         String email = tfEmail.getText();
         String phone = tfPhone.getText();
         
-        if (Register.signUp(firstName, lastName, email, phone, picture, username, password)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Info");
-            alert.setHeaderText("Dang ki thanh cong");
-            alert.setContentText("SUCCESS");
-            alert.showAndWait();
+        ArrayList<String> list = new ArrayList<>();
+        list.add(username);
+        list.add(password);
+        list.add(firstName);
+        list.add(lastName);
+        list.add(email);
+        list.add(phone);
+        
+        if(isEmpty(list)) {
+            this.showErrorDialog("Please Enter Valid Details");
         }
         else {
-            this.showErrorDialog("Dang ki that bai");
+            if (Register.signUp(firstName, lastName, email, phone, picture, username, password)) {
+                this.showSuccessDialog("Create Account Successful");
+
+                reset();
+            }
+            else {
+                this.showErrorDialog("Failed to Create Account!");
+            }
         }
+    }
+    
+    public void reset() {
+        tfFirstName.setText("");
+        tfLastName.setText("");
+        tfEmail.setText("");
+        tfPhone.setText("");
+        tfUsernameSignUp.setText("");
+        tfPasswordSignUp.setText("");
+    }
+    
+    public boolean isEmpty(ArrayList<String> list) {
+        for(String s : list){
+            if(s.equals("")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void generateAnimation() {
@@ -272,6 +320,16 @@ public class LoginController implements Initializable {
             alert.setTitle("Warning!");
             alert.setHeaderText(message);
             alert.setContentText("ERROR");
+            alert.showAndWait();
+        });
+    }
+    
+    public void showSuccessDialog(String message) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Info");
+            alert.setHeaderText(message);
+            alert.setContentText("SUCCESS");
             alert.showAndWait();
         });
     }

@@ -26,10 +26,15 @@ public class UserService {
             
             ResultSet rs = stm.executeQuery();
             
-            User u = new  User();
+            User u = null;
             while(rs.next()) {
-                u.setUsername(username);
-                u.setPassword(password);
+                int id = rs.getInt("id");
+                String first_name = rs.getNString("first_name");
+                String last_name = rs.getNString("last_name");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String picture = rs.getString("picture");
+                u = new User(id, picture, first_name, last_name, email, phone, username, password);
             }      
             return u;
         }     
@@ -76,5 +81,27 @@ public class UserService {
             return stm.executeUpdate();
         }
         
+    }
+    
+    public static User getUserInfo(String username) throws SQLException {
+        try (Connection conn = Jdbc.getConn()) {
+            PreparedStatement stm = conn.prepareStatement("SELECT * FROM users where username = ?");
+            stm.setString(1, username);
+            
+            ResultSet rs = stm.executeQuery();
+            
+            User u = null;
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String first_name = rs.getNString("first_name");
+                String last_name = rs.getNString("last_name");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String picture = rs.getString("picture");
+                String password = rs.getString("password");
+                u = new User(id, picture, first_name, last_name, email, phone, username, password);
+            }      
+            return u;
+        }     
     }
 }
