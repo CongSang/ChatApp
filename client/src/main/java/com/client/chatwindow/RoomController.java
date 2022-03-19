@@ -39,8 +39,6 @@ import org.slf4j.LoggerFactory;
 
 import animatefx.animation.*;
 import com.cipher.Vigenere;
-import java.awt.FontMetrics;
-import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.media.Media;
@@ -206,10 +204,6 @@ public class RoomController implements Initializable {
         }
     }
     
-    public void breakTextNewLine(String fullText, Double width) {
-        
-    }
-    
     public synchronized void addToChat(Message msg) {
         Task<HBox> othersMessages = new Task<HBox>() {
             @Override
@@ -321,7 +315,8 @@ public class RoomController implements Initializable {
     public void setAvatar() throws IOException {
         this.showAvatar.setImage(new Image(getClass().getClassLoader().getResource("icons/user.png").toString()));
     }
-
+    
+    /* Displays set list and info when a user joins */
     public void setUserList(Message msg) {
         logger.info("setUserList() method Enter");
         Platform.runLater(() -> {
@@ -329,6 +324,14 @@ public class RoomController implements Initializable {
             userList.setItems(users);
             userList.setCellFactory(new CellRender());
             setOnlineLabel(String.valueOf(msg.getUserList().size()));
+            for (User user : users) {
+                if (user.getUsername().equalsIgnoreCase(this.lblUserName.getText())) {
+                    this.lblName.setText("Full name: " 
+                            + user.getLastName() + " " + user.getFirstName());
+                    this.lblEmail.setText("Email: " + user.getEmail());
+                    this.lblPhone.setText("Phone: " + user.getPhone());
+                }
+            }
         });
         logger.info("setUserList() method Exit");
     }
