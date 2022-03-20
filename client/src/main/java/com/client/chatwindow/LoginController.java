@@ -88,7 +88,12 @@ public class LoginController implements Initializable {
     public static LoginController getInstance() {
         return instance;
     }
-
+    
+    @FXML
+    void loginAction(ActionEvent event) throws IOException {
+        loginButtonAction();
+    }
+    
     public void loginButtonAction() throws IOException {
         String hostname = "localhost";
         int port = 9001;
@@ -121,12 +126,12 @@ public class LoginController implements Initializable {
         }
     }
     
-    @FXML
-    void loginByKey(KeyEvent event) throws IOException {
-        if (event.getCode().toString().equals("ENTER")) {
-            loginButtonAction();
-        }
-    }
+//    @FXML
+//    void loginByKey(KeyEvent event) throws IOException {
+//        if (event.getCode().toString().equals("ENTER")) {
+//            loginButtonAction();
+//        }
+//    }
     
     public boolean checkLoginSuccess(String username, String password) {
         String hostname = "localhost";

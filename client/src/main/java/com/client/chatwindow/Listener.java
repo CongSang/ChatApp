@@ -1,7 +1,5 @@
 package com.client.chatwindow;
 
-import com.cipher.Alphabet;
-import com.cipher.Vigenere;
 import java.io.*;
 import java.net.Socket;
 
@@ -12,6 +10,7 @@ import com.messages.Message;
 import com.messages.MessageType;
 
 import static com.messages.MessageType.CONNECTED;
+import java.util.Base64;
 
 public class Listener implements Runnable {
     private static final String HASCONNECTED = "has connected";
@@ -92,10 +91,9 @@ public class Listener implements Runnable {
 
     public static void send(String msg) throws IOException {
         Message createMessage = new Message();
-        Vigenere cipher = new Vigenere();
         createMessage.setName(username);
         createMessage.setType(MessageType.USER);
-        createMessage.setMsg(Vigenere.Encode(msg));
+        createMessage.setMsg(Base64.getEncoder().encodeToString(msg.getBytes()));
         createMessage.setPicture(getPicture());
         oos.writeObject(createMessage);
         oos.flush();
@@ -120,19 +118,7 @@ public class Listener implements Runnable {
         oos.writeObject(createMessage);
         oos.flush();
     }
-    
-    //Ma hoa bang vigenere
-        public static String Encode(String text) {
-        
-        return null;
-    }
-    
-    //Giai ma bang Vigenere
-    public static String Decode(String text) {
-        
-        return null;
-    }
-
+ 
     /**
      * @return the picture
      */

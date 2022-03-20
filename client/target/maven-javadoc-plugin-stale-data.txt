@@ -1,0 +1,53 @@
+@options
+@packages
+@argfile
+--class-path
+'C:/Users/USer/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2.jar;C:/Users/USer/.m2/repository/org/slf4j/slf4j-simple/1.7.36/slf4j-simple-1.7.36.jar;C:/Users/USer/.m2/repository/org/controlsfx/controlsfx/11.1.1/controlsfx-11.1.1.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-swing/17.0.2/javafx-swing-17.0.2.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-media/17.0.2/javafx-media-17.0.2.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-web/17.0.2/javafx-web-17.0.2.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-web/17.0.2/javafx-web-17.0.2-win.jar;C:/Users/USer/.m2/repository/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar;C:/Users/USer/.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar'
+--module-path
+'C:/Users/USer/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-win.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-media/17.0.2/javafx-media-17.0.2-win.jar;C:/Users/USer/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-fxml/17.0.2/javafx-fxml-17.0.2-win.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2-win.jar;D:/Java/Projects/ChatApp/client/target/client-1.0-SNAPSHOT.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-win.jar;C:/Users/USer/.m2/repository/io/github/typhon0/AnimateFX/1.2.1/AnimateFX-1.2.1.jar;C:/Users/USer/.m2/repository/org/openjfx/javafx-swing/17.0.2/javafx-swing-17.0.2-win.jar'
+--patch-module
+com.client.chatwindow='D:/Java/Projects/ChatApp/client/src/main/java;D:/Java/Projects/ChatApp/client/target/generated-sources/annotations'
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+--module-source-path
+'D:/Java/Projects/ChatApp/client/target/apidocs/src'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'D:/Java/Projects/ChatApp/client/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'client 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' 'D:/Java/Projects/ChatApp/client/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'client 1.0-SNAPSHOT API'
+com.client.chatwindow
+com.user
+'D:/Java/Projects/ChatApp/client/src/main/java/module-info.java'
+D:\Java\Projects\ChatApp\client\target\apidocs\allclasses-index.html = 1647768691596
+D:\Java\Projects\ChatApp\client\target\apidocs\allpackages-index.html = 1647768691598
+D:\Java\Projects\ChatApp\client\target\apidocs\element-list = 1647768691478
+D:\Java\Projects\ChatApp\client\target\apidocs\help-doc.html = 1647768691632
+D:\Java\Projects\ChatApp\client\target\apidocs\index-all.html = 1647768691624
+D:\Java\Projects\ChatApp\client\target\apidocs\index.html = 1647768691626
+D:\Java\Projects\ChatApp\client\target\apidocs\jquery-ui.overrides.css = 1647768691687
+D:\Java\Projects\ChatApp\client\target\apidocs\member-search-index.js = 1647768691603
+D:\Java\Projects\ChatApp\client\target\apidocs\module-search-index.js = 1647768691600
+D:\Java\Projects\ChatApp\client\target\apidocs\overview-tree.html = 1647768691581
+D:\Java\Projects\ChatApp\client\target\apidocs\package-search-index.js = 1647768691601
+D:\Java\Projects\ChatApp\client\target\apidocs\script.js = 1647768691637
+D:\Java\Projects\ChatApp\client\target\apidocs\search.js = 1647768691641
+D:\Java\Projects\ChatApp\client\target\apidocs\serialized-form.html = 1647768691536
+D:\Java\Projects\ChatApp\client\target\apidocs\stylesheet.css = 1647768691635
+D:\Java\Projects\ChatApp\client\target\apidocs\tag-search-index.js = 1647768691604
+D:\Java\Projects\ChatApp\client\target\apidocs\type-search-index.js = 1647768691601

@@ -38,7 +38,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import animatefx.animation.*;
-import com.cipher.Vigenere;
+import java.util.Base64;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.media.Media;
@@ -205,6 +205,9 @@ public class RoomController implements Initializable {
     }
     
     public synchronized void addToChat(Message msg) {
+        byte[] decodedBytes = Base64.getDecoder().decode(msg.getMsg());
+        String decodedString = new String(decodedBytes);
+        
         Task<HBox> othersMessages = new Task<HBox>() {
             @Override
             public HBox call() throws Exception {
@@ -214,9 +217,9 @@ public class RoomController implements Initializable {
                 profileImage.setFitHeight(30);
                 profileImage.setFitWidth(30);
                 profileImage.getStyleClass().add("imageView");
-
+                
                 DialogLabel dl = new DialogLabel();
-                dl.setText(msg.getName() + ": " + Vigenere.Decode(msg.getMsg()));
+                dl.setText(msg.getName() + ": " + decodedString);
                 dl.setWrapText(true);
                 dl.getStyleClass().add("whiteBox");
                 
@@ -246,7 +249,7 @@ public class RoomController implements Initializable {
                 profileImage.getStyleClass().add("imageView");
 
                 DialogLabel dl = new DialogLabel();
-                dl.setText(Vigenere.Decode(msg.getMsg()));
+                dl.setText(decodedString);
                 dl.setWrapText(true);
                 dl.getStyleClass().add("dialogBox");
                 dl.setPadding(new Insets(5,30,5,5));
@@ -324,6 +327,8 @@ public class RoomController implements Initializable {
             userList.setItems(users);
             userList.setCellFactory(new CellRender());
             setOnlineLabel(String.valueOf(msg.getUserList().size()));
+            
+            System.out.println("So luong user: " + users.size());
             for (User user : users) {
                 if (user.getUsername().equalsIgnoreCase(this.lblUserName.getText())) {
                     this.lblName.setText("Full name: " 
