@@ -58,7 +58,7 @@
                   <Pane fx:id="pnlSignIn" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                      <children>
                         <TextField fx:id="tfUsernameSignIn" layoutX="74.0" layoutY="133.0" prefHeight="40.0" prefWidth="245.0" promptText="Username" />
-                        <TextField fx:id="tfPasswordSignIn" layoutX="74.0" layoutY="200.0" prefHeight="40.0" prefWidth="245.0" promptText="Password" />
+                        <TextField fx:id="tfPasswordSignIn" layoutX="74.0" layoutY="200.0" onAction="#loginAction" prefHeight="40.0" prefWidth="245.0" promptText="Password" />
                         <Label fx:id="lblForgot" layoutX="74.0" layoutY="275.0" prefHeight="17.0" prefWidth="113.0" styleClass="lblForgot" stylesheets="@../css/style.css" text="Forgot Password?" textFill="#b9afaf" />
                         <Label layoutX="74.0" layoutY="78.0" styleClass="title" stylesheets="@../css/style.css" text="Sign In">
                            <font>

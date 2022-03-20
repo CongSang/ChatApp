@@ -85,7 +85,12 @@ public class LoginController implements Initializable {
     public static LoginController getInstance() {
         return instance;
     }
-
+    
+    @FXML
+    void loginAction(ActionEvent event) throws IOException {
+        loginButtonAction();
+    }
+    
     public void loginButtonAction() throws IOException {
         String hostname = "localhost";
         int port = 9001;
@@ -105,7 +110,7 @@ public class LoginController implements Initializable {
             this.scene = new Scene(window);
         }
         else {
-            this.showErrorDialog("Sai tk hoac mk!!");
+            this.showErrorDialog("Wrong username or password!!");
         }
     }
     
