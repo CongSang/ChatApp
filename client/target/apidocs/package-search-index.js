@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.client.chatwindow","l":"com.client.chatwindow"},{"m":"com.client.chatwindow","l":"com.user"}];updateSearchResults();

@@ -327,6 +327,8 @@ public class RoomController implements Initializable {
             userList.setItems(users);
             userList.setCellFactory(new CellRender());
             setOnlineLabel(String.valueOf(msg.getUserList().size()));
+            
+            System.out.println("So luong user: " + users.size());
             for (User user : users) {
                 if (user.getUsername().equalsIgnoreCase(this.lblUserName.getText())) {
                     this.lblName.setText("Full name: " 

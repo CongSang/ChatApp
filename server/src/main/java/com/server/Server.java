@@ -84,8 +84,7 @@ public class Server {
     
     public static boolean checkLogin(UserInfoMessage msg) throws SQLException {
         User u = UserService.getUser(msg.getUsername(), msg.getPassword());
-        if (u.getUsername() != null) {
-            System.out.println("Co tk");
+        if (u != null) {
             return true;
         }
         return false;
